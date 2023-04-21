@@ -2,6 +2,7 @@ declare -a CASKS=(
     "git"
     "http"
     "nvm"
+    "youtube-dl"
 )
 
 echo "Installing Libs 📚"
