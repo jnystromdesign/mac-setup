@@ -12,8 +12,8 @@ for i in "${CASKS[@]}"; do
 done
 
 echo "Installing Firacode fonts! 😛"
-brew tap caskroom/fonts
-brew cask install \
+brew tap homebrew/cask-fonts
+brew install --cask \
   font-fira-code \
   font-fira-mono \
   font-fira-mono-for-powerline \
