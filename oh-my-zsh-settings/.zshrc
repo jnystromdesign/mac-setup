@@ -1,10 +1,11 @@
-# Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
+# Amazon Q pre block. Keep at the top of this file.
+[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
+
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -44,7 +45,7 @@ ZSH_THEME="agnoster-custom"
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="yyyy-mm-dd"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -53,11 +54,13 @@ ZSH_THEME="agnoster-custom"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git brew docker npm ssh-agent z)
+plugins=(git brew docker docker-compose npm ssh-agent z)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+# Set language in git to english
+alias git='LANG=en_US.UTF-8 git'
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -81,6 +84,19 @@ source $ZSH/oh-my-zsh.sh
 path+=('/Users/joakimnystrom/.cargo/bin')
 export PATH
 
+## ==== CUSTOM COMMANS ==== ##
+# Get the real directory by following the symlink
+ZSHRC_DIR=${0:A:h}
+
+# For debugging - you can comment this out later
+# echo "ZSHRC_DIR is: $ZSHRC_DIR"
+
+# Source all files in the files directory using relative path
+for file in $ZSHRC_DIR/files/*.zsh; do
+    # For debugging - you can comment this out later
+    echo "Sourcing: $file"
+    source $file
+done
 
   export NVM_DIR="$HOME/.nvm"
   [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
@@ -93,5 +109,8 @@ case ":$PATH:" in
 esac
 # pnpm endexport PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
+# Amazon Q post block. Keep at the bottom of this file.
+[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"
+
+# EAS for Expo apps
+EAS_AC_ZSH_SETUP_PATH=/Users/joakimnystrom/Library/Caches/eas-cli/autocomplete/zsh_setup && test -f $EAS_AC_ZSH_SETUP_PATH && source $EAS_AC_ZSH_SETUP_PATH; # eas autocomplete setup
